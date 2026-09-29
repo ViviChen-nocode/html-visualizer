@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>__TITLE__</title>
+    <!-- 字型分工：英文 Calibri→Carlito，中文思源黑體（Noto Sans TC）-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Carlito:wght@400;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       /* ════════════════════════════════════════════ */
@@ -24,10 +31,11 @@
         --g500: #87867f;
         --g700: #3d3d3a;
 
-        --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
+        /* 字型分工：英文標題 Georgia serif、中文標題思源黑體；英文內文 Calibri→Carlito、中文內文思源黑體 */
+        --serif: Georgia, "Times New Roman", Times, "Noto Sans TC", serif;
         --sans:
-          system-ui, -apple-system, "Segoe UI", Roboto, "PingFang TC",
-          "Noto Sans TC", Helvetica, Arial, sans-serif;
+          Calibri, Carlito, "Noto Sans TC", system-ui, -apple-system,
+          "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         --mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
 
         /* 狀態 semantic（warm-aligned，低調用） */
@@ -93,8 +101,8 @@
         margin: 0 auto;
         padding: 0 32px 140px;
       }
-      /* 長段落文字護欄：寬容器下避免一行上百字難讀（grid/卡片/表格不受限、吃滿寬） */
-      .intro,
+      /* 長段落文字護欄：寬容器下避免一行上百字難讀（grid/卡片/表格不受限、吃滿寬）；
+         Header 前言（.intro）不吃這條護欄，要跟標題同版心寬（2026-09-11 規則，2026-09-19 修正實作跟上） */
       p.prose,
       .body-text {
         max-width: 72ch;
@@ -105,6 +113,11 @@
       li,
       td {
         text-wrap: pretty;
+      }
+      /* 長英數字串（網址、hash）防爆：中文斷行交給瀏覽器預設、不加 keep-all（SKILL.md 中文排版鐵則②） */
+      p,
+      li {
+        overflow-wrap: anywhere;
       }
       h1,
       h2,
@@ -147,7 +160,6 @@
         line-height: 1.06;
         letter-spacing: -0.018em;
         margin: 0 0 8px;
-        max-width: 17ch;
         color: var(--slate);
       }
       /* 中文標題強調 — 不要用斜體（漢字沒有斜體傳統，見上方 font-synthesis 註解）。
@@ -173,7 +185,6 @@
         font-size: 16.5px;
         color: var(--g700);
         margin: 22px 0 0;
-        max-width: 620px;
       }
       .intro a {
         color: var(--clay);

@@ -28,9 +28,9 @@
   --g500:   #87867F;   /* 次要文字 / mono 標籤 */
   --g700:   #3D3D3A;   /* 內文淺色 */
 
-  /* ── 字體三套 ──────────────────── */
-  --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
-  --sans:  system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  /* ── 字體三套（中英分工，見下方說明）──────────────────── */
+  --serif: Georgia, "Times New Roman", Times, "Noto Sans TC", serif;
+  --sans:  Calibri, Carlito, "Noto Sans TC", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mono:  ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
 
   /* ── 兼容舊變數名（讓通用元件 snippet 不需修改）─────── */
@@ -48,6 +48,28 @@
   --accent-strong:var(--clay-d);
 }
 ```
+
+## 字型分工（中英）⭐
+
+Vivi 偏好的中英分工，已內建在上方 token：
+
+| 角色 | 英文 | 中文 |
+|---|---|---|
+| 標題（`--serif`）| Georgia serif（editorial 質感）| 思源黑體 Noto Sans TC（中文無對應免費 serif，黑體標題更俐落）|
+| 內文（`--sans`）| Calibri → Carlito（開源替身）→ system | 思源黑體 Noto Sans TC |
+
+運作原理：英文字體（Georgia / Calibri / Carlito）不含中文字符，中文會自動 fallback 到 stack 後面的 `"Noto Sans TC"`，達成中英分流。
+
+**⭐ 必做：每份 HTML 的 `<head>` 一定要引入這兩個 web font**（否則 Calibri 在沒裝 Office 的 Mac／分享出去會掉漆、思源黑體也載不到）：
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Carlito:wght@400;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+```
+
+- Calibri 是 Office 專有字體（macOS 非預設）→ 用 metric 相容的開源 **Carlito** 當 fallback，保證跨裝置一致。
+- Noto Sans TC ＝ 思源黑體（Google Fonts 版）。
 
 ## 配色語意（Anthropic 風）
 

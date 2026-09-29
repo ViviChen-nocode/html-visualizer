@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Brewly · 每月一份咖啡提案</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23d97757'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-size='42' fill='white'%3EB%3C/text%3E%3C/svg%3E">
+  <!-- 字型分工：英文 Calibri→Carlito，中文思源黑體（Noto Sans TC）-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Carlito:wght@400;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+    rel="stylesheet"
+  />
   <style>
     :root {
         --wrap-max: 1120px; /* 內容寬度：設定檔 tokens.layout.maxWidth 與「風格設定」改的就是它 */
@@ -15,8 +22,9 @@
       --line: #d1cfc5;
       --paper: #ffffff;
       --highlight: #f5e8df;
-      --serif: Georgia, "Noto Serif TC", serif;
-      --sans: system-ui, -apple-system, "Noto Sans TC", sans-serif;
+      /* 中文標題用思源黑體、不用 Noto Serif TC ── 中文沒對應免費 serif，黑體標題更俐落 */
+      --serif: Georgia, "Times New Roman", Times, "Noto Sans TC", serif;
+      --sans: Calibri, Carlito, "Noto Sans TC", system-ui, -apple-system, sans-serif;
     }
     * {
       box-sizing: border-box;

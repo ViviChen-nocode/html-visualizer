@@ -12,6 +12,12 @@ Same question. On the left, what you get today; on the right, what you get with 
 
 ---
 
+## About this fork
+
+Forked from [chenjackle45/html-visualizer](https://github.com/chenjackle45/html-visualizer) (original author [@chenjackle45](https://github.com/chenjackle45), MIT License), with additional battle-tested Chinese typography rules: single-line CJK paragraphs in source (ghost-space prevention), default browser line breaking (no `word-break: keep-all`), container width split for narrative vs dashboard pages, lede width matching the title, a `verify.py` check for these CJK rules, and a Chinese/English font pairing (Georgia serif / Calibri→Carlito / Noto Sans TC).
+
+---
+
 ## What it fixes
 
 You ask your AI something. It replies with three hundred lines of text. The content may be fine, but you have to scroll from top to bottom, and by the end you've forgotten the beginning.
@@ -78,7 +84,7 @@ Before handing you a page it opens it in a real browser at phone, tablet and des
 **The easy way**: paste this URL to your AI and tell it "install this for me".
 
 ```
-https://github.com/chenjackle45/html-visualizer
+https://github.com/ViviChen-nocode/html-visualizer
 ```
 
 That's it. It reads the instructions and puts everything in the right place. When it's done, tell it to reload, or just restart.
@@ -91,16 +97,16 @@ Works with Claude Code, Codex, Cursor, Cline, GitHub Copilot, OpenCode and other
 **Claude Code** has a built-in package manager:
 
 ```
-/plugin marketplace add chenjackle45/html-visualizer
-/plugin install html-visualizer@chenjackle45
+/plugin marketplace add ViviChen-nocode/html-visualizer
+/plugin install html-visualizer@vivichen-nocode
 ```
 
-Check with `/plugin list`. Update with `/plugin update html-visualizer@chenjackle45`, remove with `/plugin uninstall html-visualizer@chenjackle45`.
+Check with `/plugin list`. Update with `/plugin update html-visualizer@vivichen-nocode`, remove with `/plugin uninstall html-visualizer@vivichen-nocode`.
 
 **claude.ai (web) / Claude Cowork** doesn't take plugins — upload each skill as a zip (Settings → Capabilities → Skills). The skill folder itself must be the zip root, one zip per skill:
 
 ```
-git clone https://github.com/chenjackle45/html-visualizer.git
+git clone https://github.com/ViviChen-nocode/html-visualizer.git
 cd html-visualizer/skills
 zip -r html-visualizer.zip html-visualizer
 zip -r chart.zip chart
@@ -112,7 +118,7 @@ Upload the three zips separately. The web upload has two limits the docs don't s
 **Everything else** — clone it and run the installer:
 
 ```
-git clone https://github.com/chenjackle45/html-visualizer.git
+git clone https://github.com/ViviChen-nocode/html-visualizer.git
 cd html-visualizer
 ./install.sh --detect
 ```
@@ -218,7 +224,7 @@ The skill instructions are written in Traditional Chinese (the author's working 
 
 Jackle Chen — [jackle.pro](https://jackle.pro/) · [@chenjackle45](https://github.com/chenjackle45)
 
-Questions and suggestions: [open an issue](https://github.com/chenjackle45/html-visualizer/issues).
+Questions and suggestions: [open an issue](https://github.com/ViviChen-nocode/html-visualizer/issues).
 
 ## Credits
 

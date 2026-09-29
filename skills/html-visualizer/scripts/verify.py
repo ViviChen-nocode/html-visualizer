@@ -465,6 +465,23 @@ def main(path):
         else:
             report(OK, "無 class 撞車", "沒有元素同時掛兩個管佈局的 class")
 
+    # ── 中文排版鐵則（本機客製，SKILL.md § 中文排版兩鐵則）────────
+    # ① 中文句子跨原始碼換行 → 瀏覽器把換行渲染成半形空格，畫面出現「研 究」式幽靈空格
+    # ② word-break: keep-all 是給韓文設計的，套在中文會讓行尾嚴重參差
+    head("中文排版鐵則")
+    # 拿掉 script／style／註解但保留換行，行號才對得上原始檔
+    blank = lambda m: re.sub(r"[^\n]", "", m.group(0))
+    h_text = re.sub(r"<(script|style)\b.*?</\1\s*>", blank, h, flags=re.S | re.I)
+    h_text = re.sub(r"<!--.*?-->", blank, h_text, flags=re.S)
+    cjk = "㐀-鿿　-〿＀-￯"
+    breaks = [h_text.count("\n", 0, m.start()) + 1
+              for m in re.finditer(rf"[{cjk}][ \t]*\n[ \t]*[{cjk}]", h_text)]
+    report(OK if not breaks else BAD, "中文段落沒有跨行",
+           "" if not breaks else f"{len(breaks)} 處中文在字中間折行（第 {', '.join(map(str, breaks[:6]))} 行附近）——整段接回單行，否則畫面會出現幽靈空格")
+    keep_all = [h.count("\n", 0, m.start()) + 1 for m in re.finditer(r"word-break\s*:\s*keep-all", h, re.I)]
+    report(OK if not keep_all else BAD, "沒有 word-break: keep-all",
+           "" if not keep_all else f"第 {', '.join(map(str, keep_all[:6]))} 行——中文用瀏覽器預設斷行，長英數字串防爆改用 overflow-wrap: anywhere")
+
     # ── 浮動說明窗 ───────────────────────────────
     # 先拿掉腳本：探索層腳本的檔頭註解有 data-detail-open="<id>" 範例，§6.7 又規定整支不改內容貼進頁面
     h_markup = re.sub(r"<script\b[^>]*>.*?</script\s*>", " ", h, flags=re.S | re.I)

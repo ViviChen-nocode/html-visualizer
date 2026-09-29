@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Brewly 客服對話自動歸檔 · 收尾追認</title>
+    <!-- 字型分工：英文 Calibri→Carlito，中文思源黑體（Noto Sans TC）-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Carlito:wght@400;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       :root {
@@ -47,11 +54,11 @@
         --accent: var(--clay);
         --accent-soft: var(--clay-soft);
         --accent-strong: var(--clay-d);
-        /* Type stacks */
-        --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
+        /* Type stacks：中英分工，英文標題 Georgia、中文標題思源黑體；英文內文 Calibri→Carlito、中文內文思源黑體 */
+        --serif: Georgia, "Times New Roman", Times, "Noto Sans TC", serif;
         --sans:
-          system-ui, -apple-system, "Segoe UI", "PingFang TC", "Noto Sans TC",
-          Roboto, Helvetica, Arial, sans-serif;
+          Calibri, Carlito, "Noto Sans TC", system-ui, -apple-system,
+          "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         --mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
       }
       * {
@@ -70,10 +77,12 @@
         -webkit-font-smoothing: antialiased;
         font-synthesis: none;
       }
-      h1,
-      h2,
-      h3,
-      h4 {
+      /* ⚠️ 選擇器要比 Tailwind preflight 高一級（同 base-template 註解）：preflight 把 h1–h6 的
+         font-size／font-weight 設成 inherit、而且注入得比較晚，裸 `h1` 選擇器會輸。 */
+      body h1,
+      body h2,
+      body h3,
+      body h4 {
         font-family: var(--serif);
         font-weight: 500;
         color: var(--slate);
@@ -87,6 +96,11 @@
       li,
       td {
         text-wrap: pretty;
+      }
+      /* 長英數字串（網址、hash）防爆：中文斷行交給瀏覽器預設、不加 keep-all（SKILL.md 中文排版鐵則②） */
+      p,
+      li {
+        overflow-wrap: anywhere;
       }
       h1,
       h2,
@@ -2393,11 +2407,7 @@
                       改前數據來源
                     </div>
                     <p style="font-size: 12.5px; line-height: 1.6">
-                      本頁使用人工編製的虛構對話樣本 <strong>N=50</strong>（示例期間 9/1–9/7）。
-                      10/50（20%）缺少可用草稿，其中<strong
-                        >10 則都缺少必要段落</strong
-                      >（示例刻意聚焦格式問題）。
-                      目標為同樣 50 則中最多 2 則失敗（4%）；這些是展示用數字，需用正式驗證判斷實際效果。
+                      本頁使用人工編製的虛構對話樣本 <strong>N=50</strong>（示例期間 9/1–9/7）。10/50（20%）缺少可用草稿，其中<strong>10 則都缺少必要段落</strong>（示例刻意聚焦格式問題）。目標為同樣 50 則中最多 2 則失敗（4%）；這些是展示用數字，需用正式驗證判斷實際效果。
                     </p>
                   </div>
                 </div>

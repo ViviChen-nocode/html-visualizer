@@ -195,8 +195,10 @@ description: 把長文件、報告、規格、設計決策、架構說明、教�
 | `<title>` | 對應內容主題、不要用「Untitled」/「Document」 |
 | Tailwind CDN | `<script src="https://cdn.tailwindcss.com"></script>`、不用 build tool |
 | 配色 token | 從 `references/color-and-typography.md` 複製 CSS variables、不自創 |
-| 字體 stack | Apple system + Noto Sans TC、見 typography reference |
-| 容器寬度 | 主容器 `width: min(94vw, var(--wrap-max, 1760px))` 寬版置中（1760 是預設；設定檔 `tokens.layout.maxWidth` 與「風格設定」的「內容寬度」改的就是這個變數）（吃滿寬螢幕、不浪費兩側留白）；**長段落文字另加 `max-width: 72ch` 行長護欄**、grid / 卡片 / 對比 / 表格 / mock 吃滿寬。範本 `.wrap` 已內建此策略、直接複製即可 |
+| 字體 stack ⭐ | 中英分工：英文標題 Georgia serif / 內文 Calibri→Carlito（開源替身），中文一律思源黑體（Noto Sans TC）。**`<head>` 必引入 Carlito + Noto Sans TC 的 Google Fonts link**、見 `references/color-and-typography.md` § 字型分工 |
+| ⭐ **中文排版兩鐵則**（2026-08～09 客戶專案實戰教訓） | ①**原始碼中，中文段落一律寫成單行**——中文句子跨原始碼換行時，瀏覽器把換行渲染成半形空格，畫面出現「研 究」式幽靈空格與怪斷點；寧可行長爆表也不要在中文字中間折行。②**中文斷行用瀏覽器預設、不要加 `word-break: keep-all`**——keep-all 是給韓文（有空格分詞）設計的，套在中文會把標點之間整塊文字變成不可拆單位、行尾嚴重參差；中文正統排版本來就允許任意字間斷行（只避頭尾標點、瀏覽器預設已處理）、讀者習慣。長英數字串防爆用 `overflow-wrap: anywhere` 即可（2026-09-11 拍板、推翻 2026-08 舊版鐵則②） |
+| 容器寬度 | 主容器 `width: min(94vw, var(--wrap-max, 1760px))` 置中——grid / 卡片為主的 dashboard 用預設寬版 1760（吃滿寬螢幕、不浪費兩側留白）；**以文字敘事為主的頁面（大標＋前言＋段落）在 `:root` 改宣告 `--wrap-max: 1280px` 窄版**——寬版會放大「標題滿版 vs 段落 72ch」的版心失衡（2026-09-11 實戰拍板）。一律改變數、不要寫死 width，設定檔 `tokens.layout.maxWidth` 與「風格設定」的「內容寬度」改的就是這個變數。**長段落文字另加 `max-width: 72ch` 行長護欄，但 Header 前言（lede）不加護欄、與標題同版心寬**——大標正下方的前言右緣要與標題對齊、否則看起來像沒排完；grid / 卡片 / 對比 / 表格 / mock 吃滿寬 |
+| ⭐ 中文強調不用斜體 | 漢字沒有斜體傳統，`font-style: italic` 只會把字機械拉歪、筆畫變形。標題與內文的 `<em>` 一律**換字重＋clay 色**；語氣更重用 `.hl` 螢光筆（一頁最多一兩次）；全域 `body { font-synthesis: none }` 當保險絲。見 `references/color-and-typography.md` § 標題用 serif，但強調不用斜體（2026-09-25 採用上游定案、取代 2026-09-11「中文斜體間距」規則） |
 | Header | 標題 + 副標、含日期 / 進度 / context |
 | 主要區段 | `<section id="...">` 帶 anchor 給 nav 用 |
 | Footer / Sticky bar | 如有互動或 export 需求、加 sticky bottom bar——**一律複製 marathon 範本那條**（含 `id="preview-btn"` 的預覽鈕），不要自己另做固定在底部的列；`html`／`body` 不要設 `overflow`（會讓 sticky 失效，整條列連同按鈕跑到頁尾） |

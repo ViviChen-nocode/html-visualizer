@@ -1,10 +1,10 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "chenjackle45",
-  "description": "Jackle Chen's Claude Code plugins",
+  "name": "vivichen-nocode",
+  "description": "ViviChen's Claude Code plugins (html-visualizer forked from chenjackle45)",
   "owner": {
-    "name": "Jackle Chen",
-    "url": "https://jackle.pro/"
+    "name": "ViviChen",
+    "url": "https://github.com/ViviChen-nocode"
   },
   "plugins": [
     {
@@ -16,7 +16,7 @@
       },
       "source": "./",
       "category": "productivity",
-      "homepage": "https://github.com/chenjackle45/html-visualizer"
+      "homepage": "https://github.com/ViviChen-nocode/html-visualizer"
     }
   ]
 }

@@ -12,6 +12,17 @@
 
 ---
 
+## 關於本 fork
+
+本專案 fork 自 [chenjackle45/html-visualizer](https://github.com/chenjackle45/html-visualizer)（原作者 [@chenjackle45](https://github.com/chenjackle45)，MIT License），在原版基礎上補充了**中文排版實戰規則**（均來自實際踩坑、標註拍板日期，詳見 `skills/html-visualizer/SKILL.md` 必含元素表）：
+
+- **中文排版兩鐵則**：①原始碼中文段落一律單行（跨行會渲染成幽靈空格）②中文斷行用瀏覽器預設、禁用 `word-break: keep-all`（那是給韓文設計的，中文會行尾參差）
+- **容器寬度分流**：grid／dashboard 頁用 1760px 寬版，文字敘事頁用 1280px 窄版；Header 前言（lede）不加行長護欄、與標題同版心寬
+- **`verify.py` 中文排版鐵則檢查**：自檢腳本會抓出跨行的中文段落與 `word-break: keep-all`
+- **中英字型分工**：英文標題 Georgia serif／內文 Calibri→Carlito（開源替身），中文一律思源黑體（Noto Sans TC），`<head>` 必引 Google Fonts
+
+---
+
 ## 它解決什麼
 
 你問 AI 一個問題，它回你三百行文字。內容也許都對，但你得從頭捲到尾，看完前面忘記後面。
@@ -76,7 +87,7 @@ AI 需要你拍板的事，每一題就放在它的說明旁邊，選項和補�
 **最簡單的方法**：把下面這行網址貼給你的 AI，跟它說「幫我安裝這個」。
 
 ```
-https://github.com/chenjackle45/html-visualizer
+https://github.com/ViviChen-nocode/html-visualizer
 ```
 
 就這樣。它會自己看說明、把東西放到正確的位置。裝完跟它說一聲「重新載入」，或把視窗關掉重開。
@@ -89,16 +100,16 @@ https://github.com/chenjackle45/html-visualizer
 **Claude Code** 有內建的套件管理，直接輸入：
 
 ```
-/plugin marketplace add chenjackle45/html-visualizer
-/plugin install html-visualizer@chenjackle45
+/plugin marketplace add ViviChen-nocode/html-visualizer
+/plugin install html-visualizer@vivichen-nocode
 ```
 
-用 `/plugin list` 確認裝好了。更新用 `/plugin update html-visualizer@chenjackle45`，移除用 `/plugin uninstall html-visualizer@chenjackle45`。
+用 `/plugin list` 確認裝好了。更新用 `/plugin update html-visualizer@vivichen-nocode`，移除用 `/plugin uninstall html-visualizer@vivichen-nocode`。
 
 **claude.ai 網頁版 / Claude Cowork** 不吃 plugin，要把 skill 打包成 zip 上傳（Settings → Capabilities → Skills）。zip 的根目錄必須是 skill 資料夾本身，一個 skill 一個 zip：
 
 ```
-git clone https://github.com/chenjackle45/html-visualizer.git
+git clone https://github.com/ViviChen-nocode/html-visualizer.git
 cd html-visualizer/skills
 zip -r html-visualizer.zip html-visualizer
 zip -r chart.zip chart
@@ -110,7 +121,7 @@ zip -r diagram-design.zip diagram-design
 **其他工具**下載回來跑安裝腳本：
 
 ```
-git clone https://github.com/chenjackle45/html-visualizer.git
+git clone https://github.com/ViviChen-nocode/html-visualizer.git
 cd html-visualizer
 ./install.sh --detect
 ```
@@ -216,7 +227,7 @@ Skill 的說明文字是繁體中文（作者的工作語言）。**產出頁面
 
 Jackle Chen — [jackle.pro](https://jackle.pro/) · [@chenjackle45](https://github.com/chenjackle45)
 
-有問題或建議請開 [issue](https://github.com/chenjackle45/html-visualizer/issues)。
+有問題或建議請開 [issue](https://github.com/ViviChen-nocode/html-visualizer/issues)。
 
 ## 致謝
 
